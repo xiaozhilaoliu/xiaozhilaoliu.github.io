@@ -8,10 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="hezq">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="优雅的处理错误"/>
+  <meta property="og:title" content="小志"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="小志"/>
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="http://yoursite.comundefined"/>
   
     <link rel="alternate" href="/atom.xml" title="小志" type="application/atom+xml">
@@ -35,7 +35,8 @@
 </head>
 
   <body>
-    <!-- Page Header -->
+    <!-- Archive Header -->
+<!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
@@ -43,7 +44,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">优雅的处理错误</p>
+          <p class="title">Blog Archives</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -89,63 +90,34 @@
 </header>
 
 
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By hezq</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2016-10-25</span>
-            <span class="time">01:14:00</span>
-          </span>
-          
-          <!--  Categories  -->
-            <span class="categories info">Under 
+<!-- Archive List -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+        <div class="archive-item">
+  <a href="/2016/10/21/代码整洁之道读后感/" class="post-title">
+    读书笔记一
+  </a>
+  <div class="date text-muted">Posted on 2016-10-21 00:38:51</div>
+</div>
 
-<a href="/categories/代码优化/">代码优化</a>
-</span>
-          
-        </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
+      
 
-<a class="tag" href="/tags/读书/">#读书</a> <a class="tag" href="/tags/异常/">#异常</a>
-
-
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <h3 id="why"><a href="#why" class="headerlink" title="why"></a>why</h3><ul>
-<li>许多程序，我们会设计的错误处理和异常处理，简单的登录，各种异常信<br>息，面貌错误、手机号检测等等；但是如果这些处理不当，它就会搞乱你<br>的代码逻辑，会导致代码的可读性变得很差。<h3 id="how"><a href="#how" class="headerlink" title="how"></a>how</h3></li>
-<li><p>使用异常而非返回码</p>
-<p>  简而言之，如果有诸多错误信息，你通过状态码来处理和识别，会导致时<br>  间异常，你根本无法区分这些错误是什么，所以时候用一个表意更清楚的<br>  异常类，显得简单可靠</p>
-</li>
-<li><p>给出异常发生的环境说明</p>
-<p>  每个抛出的异常，都应该提供左后的环境说明，以便于判断错误的来源和<br>  出处</p>
-</li>
-<li><p>调用者需要定义异常类</p>
-</li>
-<li><p>别返回null值</p>
-<p>  返回null这样通常都会引起空指针异常，如果上层代码没有捕获这个异<br>  常，就会引起奔溃。</p>
-</li>
-<li><p>别传递null</p>
-<p>  传递null，同样也会在不严谨的代码中导致奔溃。</p>
-</li>
-</ul>
-
-        </div>
-      </div>
     </div>
   </div>
-</article>
+</div>
+<!-- Pagination -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-md-offset-1">
+      <ul class="pagination">
+          
+          
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 
