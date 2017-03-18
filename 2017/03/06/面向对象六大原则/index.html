@@ -1,165 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>面向对象六大原则 | 小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
+block title
+  title= page.title + ' | ' + config.title
 
-  <main class="post">
-  <article>
-  <h1 class="article-title">
-    <a href="/2017/03/06/面向对象六大原则/">面向对象六大原则</a>
-  </h1>
-
-  <section class="article-meta">
-    <p class="article-date">March 06 2017</p>
-  </section>
-
-  <section class="article-entry">
-    <h2 id="一、面向对象的六大原则"><a href="#一、面向对象的六大原则" class="headerlink" title="一、面向对象的六大原则"></a>一、面向对象的六大原则</h2><h3 id="1、单一原则S"><a href="#1、单一原则S" class="headerlink" title="1、单一原则S"></a>1、单一原则<code>S</code></h3><ul>
-<li>英文名称：Single Responsibility Principle;缩写是SRP;</li>
-<li>定义：就一个类而言，应该仅有一个引起他变化的原因；</li>
-</ul>
-<h3 id="2、开闭原则O"><a href="#2、开闭原则O" class="headerlink" title="2、开闭原则O"></a>2、开闭原则<code>O</code></h3><ul>
-<li>英文名称：Open Close Principle，缩写是OCP；</li>
-<li>定义：软件中的对象（类、模块、函数等）应该对于扩展开放，但是，对于修改是封闭的。</li>
-<li>现状：当软件需求发生变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。方然，在实际开发中，修改原有代码、扩展代码往往是同事存在的。</li>
-</ul>
-<h3 id="3、里氏替换原则L"><a href="#3、里氏替换原则L" class="headerlink" title="3、里氏替换原则L"></a>3、里氏替换原则<code>L</code></h3><ul>
-<li>英文名称：Liskov Sybstitution Ptoncipal,缩写是LSP;</li>
-<li>定义<ul>
-<li>第一种：如果对每一个类型为S的对象O1，都有类型T的对象O2，使得以T定义的所有程序P在所有的对象O1都替换成O2时，程序P的行为没有发生变化，那么类型S是类型T的子类型。</li>
-<li>第二种：所有引入基类的地方必须能够使用其子类对象；</li>
-</ul>
-</li>
-</ul>
-<h3 id="4、依赖倒置原则D"><a href="#4、依赖倒置原则D" class="headerlink" title="4、依赖倒置原则D"></a>4、依赖倒置原则<code>D</code></h3><ul>
-<li>英文名称：Dependence Inversion Principle;缩写是DIP;</li>
-<li>定义：依赖倒置原则指代了一种特定的解耦形式，使得高层次的模块不依赖与低层次的模块的实现细节的目的，依赖模块被颠倒了。</li>
-<li>关键点：<ul>
-<li>高层模块不应该以来低层次模块，两者都应该以来其抽象。</li>
-<li>抽象不应该依赖细节。（抽象值接口或抽象类）</li>
-<li>细节应该依赖抽象。  </li>
-</ul>
-</li>
-<li>java中的表现</li>
-</ul>
-<blockquote>
-<p>模块之间的以来通过抽象发生，实现类之间不直接发生关系，其依赖关系是通过接口或者抽象类产生的。</p>
-</blockquote>
-<h3 id="5、接口隔离原则I"><a href="#5、接口隔离原则I" class="headerlink" title="5、接口隔离原则I"></a>5、接口隔离原则<code>I</code></h3><ul>
-<li>英文名称：InterfaceSegregation Principles</li>
-<li>定义：<ul>
-<li>第一种：客户端不应该依赖他不需要的接口。</li>
-<li>第二种：类间的依赖关系应该建立在最小的接口上。</li>
-</ul>
-</li>
-<li>目的<ul>
-<li>臃肿的接口拆分成更小个更具体的接口，使系统解耦，容易重构、更改和重新部署。</li>
-<li>让以来的接口尽可能的小。 </li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>Bob大叔在21世纪早期，将单一原则、开闭原则、里氏替换、接口隔离以及以来倒置5个原则定义为SOLID原则，作为面向对象的5个基本原则</strong></p>
-<h3 id="6、迪米特原则"><a href="#6、迪米特原则" class="headerlink" title="6、迪米特原则"></a>6、迪米特原则</h3><ul>
-<li>英文名称：Law of Demter</li>
-<li>定义：一个对象应该对其他对象有最少的了解。通俗的的讲，一个类应该对自己需要耦合或者调运的类知道最少，类的内部如何实现与调运着或者依赖着没有关系，调运者或者依赖着只需知道他需要的方法即可，其他的一概不管。类与类之间知道的越多，耦合就越大，当一个类发生改变时，影响也就越大。</li>
-</ul>
-
-  </section>
-</article>
-
-  <div class="sharing grid">
-  <section class="profile grid-item grid">
-    <img class="avatar" src="http://7xrcp8.com1.z0.glb.clouddn.com/avatar.png" alt="avatar" />
-    <div class="grid-item">
-      <p class="title"> 小志 </p>
-      <p class="subtitle"> 开发进阶之路 </p>
-    <div>
-  </section>
-
-  <section class="share-btns">
-    <!-- <p> share it if you like it~ </p> -->
-    <a
-  class="twitter-share-button"
-  data-size="large"
-  data-via="DrakeLeung"
-  href="https://twitter.com/intent/tweet?text= id="一、面向对象的六大原则"><a"
->
-  Tweet
-</a>
-
-<script>
-  window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  js.async = true;
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));
-</script>
-
-  </section>
-</div>
-
-
-  
-    
-<section class="article-comment">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-<script>
-  var disqus_shortname = 'drakeleung';
-  
-  var disqus_url = 'http://yoursite.com/2017/03/06/面向对象六大原则/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-  
-</main>
-
-</body>
-</html>
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+    if theme.duoshuo
+      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content)
+    .post-content
+      != page.content
+    include _partial/tag
+    include _partial/post_nav
+    if theme.duoshuo
+      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
+         .ds-share-inline
+            ul.ds-share-icons-16
+              li(data-toggle='ds-share-icons-more')
+                a(class='ds-more' href='javascript:void(0);') 分享到：
+              li
+                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
+              li
+                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
+              li
+                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
+              li
+                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
+            .ds-share-icons-more
+    include _partial/comments

@@ -1,145 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>单元测试的重要性 | 小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
+block title
+  title= page.title + ' | ' + config.title
 
-  <main class="post">
-  <article>
-  <h1 class="article-title">
-    <a href="/2016/12/04/单元测试的重要性/">单元测试的重要性</a>
-  </h1>
-
-  <section class="article-meta">
-    <p class="article-date">December 04 2016</p>
-  </section>
-
-  <section class="article-entry">
-    <h2 id="单元测试的个人认识"><a href="#单元测试的个人认识" class="headerlink" title="单元测试的个人认识"></a>单元测试的个人认识</h2><ul>
-<li>从解决问题角度出发<ul>
-<li>如何解决重构过程中，关联性影响？</li>
-<li>如何在保证每次提交的push的代码，都是完整可运行的？</li>
-<li>如何快速的验证，某个函数、类以及功能是正确的？</li>
-<li>如何在不做相信设计的情况下，能够预先对代码的设计，形成一个基本架构？</li>
-</ul>
-</li>
-<li><p>从带来的好处出发</p>
-<ul>
-<li>大大的减少bug。</li>
-<li>快速的定位bug</li>
-<li>对代码的设计有一定的规范，提高代码质量</li>
-<li>大大的提升开发效率</li>
-</ul>
-</li>
-<li><p>对于开发者的挑战</p>
-<ul>
-<li>除了管理程序代码，还的维护测试代码</li>
-<li>没有一定的时间的实践，对数会认为这个过程太复杂，直接放弃。</li>
-<li>要求写出能够测试的代码，对代码质量有了更高的要求。</li>
-</ul>
-</li>
-<li>如何更好的实践<ul>
-<li>单元测试自动化</li>
-<li>单元测试效率提升</li>
-<li>频繁的运行单元测试</li>
-</ul>
-</li>
-</ul>
-
-  </section>
-</article>
-
-  <div class="sharing grid">
-  <section class="profile grid-item grid">
-    <img class="avatar" src="http://7xrcp8.com1.z0.glb.clouddn.com/avatar.png" alt="avatar" />
-    <div class="grid-item">
-      <p class="title"> 小志 </p>
-      <p class="subtitle"> 开发进阶之路 </p>
-    <div>
-  </section>
-
-  <section class="share-btns">
-    <!-- <p> share it if you like it~ </p> -->
-    <a
-  class="twitter-share-button"
-  data-size="large"
-  data-via="DrakeLeung"
-  href="https://twitter.com/intent/tweet?text= id="单元测试的个人认识"><a h"
->
-  Tweet
-</a>
-
-<script>
-  window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  js.async = true;
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));
-</script>
-
-  </section>
-</div>
-
-
-  
-    
-<section class="article-comment">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-<script>
-  var disqus_shortname = 'drakeleung';
-  
-  var disqus_url = 'http://yoursite.com/2016/12/04/单元测试的重要性/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-  
-</main>
-
-</body>
-</html>
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+    if theme.duoshuo
+      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content)
+    .post-content
+      != page.content
+    include _partial/tag
+    include _partial/post_nav
+    if theme.duoshuo
+      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
+         .ds-share-inline
+            ul.ds-share-icons-16
+              li(data-toggle='ds-share-icons-more')
+                a(class='ds-more' href='javascript:void(0);') 分享到：
+              li
+                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
+              li
+                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
+              li
+                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
+              li
+                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
+            .ds-share-icons-more
+    include _partial/comments

@@ -1,216 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
+- var current_title = page.title || tag.name || category.name || site.title
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a class="active" href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
+block title
+  if config.subtitle
+    title= config.title + ' | ' + config.subtitle
+  else
+    title= config.title
+block content
 
-  <header class="app-header">
-  <section class="banner">
-    <!-- http://daverupert.com/2015/12/intrinsic-placeholders-with-picture/ -->
-    <div class="placeholder"></div>
-    <img
-      class="banner-small"
-      data-src="http://7xrcp8.com1.z0.glb.clouddn.com/banner-large.png"
-      src="http://7xrcp8.com1.z0.glb.clouddn.com/banner-small.png"
-      alt="banner"
-    >
-  </section>
+  for post in page.posts.toArray()
+    .post
+      h2.post-title
+        include _partial/helpers
+        a(href=url_for(post.path))
+          +title(post)
+      .post-meta= post.date.format(config.date_format)
+      if theme.duoshuo
+        a.ds-thread-count(data-thread-key=post.path, href=url_for(post.path) + '#comments')
+      if theme.disqus
+        a.disqus-comment-count(data-disqus-identifier=post.path, href=url_for(post.path) + '#disqus_thread')
+      if post.description
+        .post-content
+          != post.description
+      else if post.excerpt
+        .post-content
+          != post.excerpt
+      else if post.content
+        - var br = post.content.indexOf('\n')
+        if br < 0
+          .post-content
+            != post.content
+        else
+          .post-content
+            != post.content.substring(0, br)
+      p(class='readmore')
+        a(href=url_for(post.path))= __('Readmore')
 
-  <section class="description">
-    <img class="avatar" src="http://7xrcp8.com1.z0.glb.clouddn.com/avatar.png" alt="avatar" />
-    <h1 class="title"> 小志 </h1>
-    <h3 class="subtitle"> 开发进阶之路 </h3>
-  </section>
-
-  <ul class="social-list">
-    <a href="https://twitter.com/DrakeLeung">Twitter</a>
-    <a href="https://github.com/DrakeLeung">GitHub</a>
-    <a href="http://weibo.com/cha12chalyc">Weibo</a>
-  </ul>
-</header>
-
-<main class="index">
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2017/03/18/Go学习笔记/">Go学习笔记一</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Mar 18 2017</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2017/03/13/代码块积累/">代码块积累</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Mar 13 2017</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2017/03/06/面向对象六大原则/">面向对象六大原则</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Mar 06 2017</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2017/02/19/Android studio关联redmine/">Android Studio关联redmine</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Feb 19 2017</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2016/12/29/2016年度个人总结/">2016年度个人总结</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Dec 29 2016</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2016/12/04/单元测试的重要性/">单元测试的重要性</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Dec 04 2016</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2016/11/16/代码重构读书笔记/">重构代码读书笔记</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Nov 16 2016</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2016/10/25/优雅的处理错误/">优雅的处理错误</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Oct 25 2016</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2016/10/21/敏捷开发读后感/"><互联网敏捷开发>读后感</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Oct 21 2016</span>
-      </div>
-    </article>
-  
-    <article>
-      <h1 class="article-title">
-        <a href="/2016/10/21/代码整洁之道读后感/">读书笔记一</a>
-      </h1>
-
-      <div class="article-entry">
-        
-      </div>
-
-      <div class="article-meta">
-        <span class="article-date">Oct 21 2016</span>
-      </div>
-    </article>
-  
-
-  <nav class="page-nav">
-  <span class="page-number current">1</span>
-</nav>
-
-</main>
-
-<footer class="app-footer">
-  <p>
-    Written by
-    <a href="https://github.com/DrakeLeung/hexo-theme-again">
-      Drake Leung
-    </a>
-  </p>
-  <p> Powered by <a href="https://hexo.io"> Hexo </a> <p>
-</footer>
-
-<script src="/js/app.js"></script>
-
-</body>
-</html>
+  include _partial/paginator
+  if theme.disqus
+    script(id='dsq-count-scr', src='//#{theme.disqus}.disqus.com/count.js', async)

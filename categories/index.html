@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>分类 | 小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
-
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
-
-  <main class="page">
-  <div>
-    
-  </div>
-</main>
-
-</body>
-</html>
+extends base
+block title
+  title= page.title + ' | ' + config.title
+block content
+  .post
+    h1.post-title= page.title
+    .post-content
+      if page.content
+        != page.content
+      else
+        .author-page
+          a.photo(href="javascript:;")
+            img(src='#{theme.about.photo_url}')
+          .author
+            p
+              i.fa.fa-user name：
+              | #{config.author}
+            p
+              i.fa.fa-email email：
+              a(href="mailto:#{theme.about.email}",target="_blank")= theme.about.email
+            p
+              i.fa.fa-weibo weibo：
+              a(href="#{theme.about.weibo_url}",target="_blank")= theme.about.weibo_name
+            p
+              i.fa.fa-github github：
+              a(href="#{theme.about.github_url}",target="_blank")= theme.about.github_name
+    if page.comments
+      include _partial/comments

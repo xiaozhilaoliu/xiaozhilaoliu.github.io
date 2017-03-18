@@ -1,146 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Go学习笔记一 | 小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
+block title
+  title= page.title + ' | ' + config.title
 
-  <main class="post">
-  <article>
-  <h1 class="article-title">
-    <a href="/2017/03/18/Go学习笔记/">Go学习笔记一</a>
-  </h1>
-
-  <section class="article-meta">
-    <p class="article-date">March 18 2017</p>
-  </section>
-
-  <section class="article-entry">
-    <h3 id="Go导包的顺序"><a href="#Go导包的顺序" class="headerlink" title="Go导包的顺序"></a>Go导包的顺序</h3><ul>
-<li>编译器首先首先那查找Go的安装目录；</li>
-<li>其次，按照顺序查找GOPATH变量里的目录;</li>
-<li>直到编译器找到一个满足的包，就停止查找。</li>
-</ul>
-<h3 id="命名导入"><a href="#命名导入" class="headerlink" title="命名导入"></a>命名导入</h3><ul>
-<li>当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；</li>
-<li><p>有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这个包;</p>
-<p>  <code>空白标识符</code></p>
-<pre><code>下划线字符（_）在Go语言里面称为空白标识符，有很多用法。这个标识符用来抛弃不想
-</code></pre><p>  继续使用的值，如给导入的包赋予一个空名字，或者忽略函数返回的你不感兴趣的值;</p>
-</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> notebook</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	myfmt <span class="string">"chat"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">packageExample</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"测试导入重命名"</span>)</div><div class="line">	myfmt.CreateServer()</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Go开发工具"><a href="#Go开发工具" class="headerlink" title="Go开发工具"></a>Go开发工具</h3><ul>
-<li><p>go vet</p>
-<p>  <code>vet不是帮助开发人员写代码，而是检测代码的常见错误。可以检测以下错误：</code></p>
-<ul>
-<li>1、Printf类函数的方法时，方法签名的错误。</li>
-<li>2、定义常用的方法时，方法签名错误。</li>
-<li>3、错误的结构标签。</li>
-<li>4、没有指定字段名的结构字面量。</li>
-</ul>
-</li>
-<li>Go语言文档<ul>
-<li>命令行查看：<code>godoc tar(包名)</code></li>
-<li>浏览文档：<code>go doc -http=:5050(端口号)</code>    </li>
-</ul>
-</li>
-<li>社区开放的依赖管理工具 <code>godep、vender和gb</code></li>
-</ul>
-
-  </section>
-</article>
-
-  <div class="sharing grid">
-  <section class="profile grid-item grid">
-    <img class="avatar" src="http://7xrcp8.com1.z0.glb.clouddn.com/avatar.png" alt="avatar" />
-    <div class="grid-item">
-      <p class="title"> 小志 </p>
-      <p class="subtitle"> 开发进阶之路 </p>
-    <div>
-  </section>
-
-  <section class="share-btns">
-    <!-- <p> share it if you like it~ </p> -->
-    <a
-  class="twitter-share-button"
-  data-size="large"
-  data-via="DrakeLeung"
-  href="https://twitter.com/intent/tweet?text= id="Go导包的顺序"><a hre"
->
-  Tweet
-</a>
-
-<script>
-  window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  js.async = true;
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));
-</script>
-
-  </section>
-</div>
-
-
-  
-    
-<section class="article-comment">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-<script>
-  var disqus_shortname = 'drakeleung';
-  
-  var disqus_url = 'http://yoursite.com/2017/03/18/Go学习笔记/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-  
-</main>
-
-</body>
-</html>
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+    if theme.duoshuo
+      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content)
+    .post-content
+      != page.content
+    include _partial/tag
+    include _partial/post_nav
+    if theme.duoshuo
+      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
+         .ds-share-inline
+            ul.ds-share-icons-16
+              li(data-toggle='ds-share-icons-more')
+                a(class='ds-more' href='javascript:void(0);') 分享到：
+              li
+                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
+              li
+                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
+              li
+                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
+              li
+                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
+            .ds-share-icons-more
+    include _partial/comments

@@ -1,72 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
-
-  <main class="archive">
-  
-    <article class="grid">
-  <h1 class="article-title grid-item">
-    <a href="/2016/12/29/2016年度个人总结/">2016年度个人总结</a>
-  </h1>
-
-  <div class="article-meta">
-    <span class="article-date">Dec 29 2016</span>
-  </div>
-</article>
-
-  
-    <article class="grid">
-  <h1 class="article-title grid-item">
-    <a href="/2016/12/04/单元测试的重要性/">单元测试的重要性</a>
-  </h1>
-
-  <div class="article-meta">
-    <span class="article-date">Dec 04 2016</span>
-  </div>
-</article>
-
-  
-    <article class="grid">
-  <h1 class="article-title grid-item">
-    <a href="/2016/10/21/代码整洁之道读后感/">读书笔记一</a>
-  </h1>
-
-  <div class="article-meta">
-    <span class="article-date">Oct 21 2016</span>
-  </div>
-</article>
-
-  
-
-  <nav class="page-nav">
-  <span class="page-number current">1</span>
-</nav>
-
-</main>
-
-</body>
-</html>
+block title
+  title= page.tag + ' | ' + config.title
+block content
+  .post
+    if config.language === ('zh-CN'||'zh-TW')
+      h1.label-title= __('reading_before')
+        i.fa.fa-biao= page.tag
+        = __('reading_after')
+    else if config.language === 'ko'
+      h1.label-title
+        i.fa.fa-biao= page.tag
+        = __('reading_label') 
+    else
+      h1.label-title= __('reading_label')
+        i.fa.fa-biao= page.tag  
+    .post-archive
+      .archive-wrap.tag-cat
+        each posts in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
+          ul.listing
+            for post in posts
+                li
+                  a(href=url_for(post.path), title=post.title)
+                    span.tite= post.date.format('YYYY/MM/DD') + '  '
+                      +title(post)              
+  include _partial/paginator.jade

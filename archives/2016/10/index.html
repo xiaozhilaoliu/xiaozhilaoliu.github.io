@@ -1,72 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
-
-  <main class="archive">
-  
-    <article class="grid">
-  <h1 class="article-title grid-item">
-    <a href="/2016/10/25/优雅的处理错误/">优雅的处理错误</a>
-  </h1>
-
-  <div class="article-meta">
-    <span class="article-date">Oct 25 2016</span>
-  </div>
-</article>
-
-  
-    <article class="grid">
-  <h1 class="article-title grid-item">
-    <a href="/2016/10/21/敏捷开发读后感/"><互联网敏捷开发>读后感</a>
-  </h1>
-
-  <div class="article-meta">
-    <span class="article-date">Oct 21 2016</span>
-  </div>
-</article>
-
-  
-    <article class="grid">
-  <h1 class="article-title grid-item">
-    <a href="/2016/10/21/代码整洁之道读后感/">读书笔记一</a>
-  </h1>
-
-  <div class="article-meta">
-    <span class="article-date">Oct 21 2016</span>
-  </div>
-</article>
-
-  
-
-  <nav class="page-nav">
-  <span class="page-number current">1</span>
-</nav>
-
-</main>
-
-</body>
-</html>
+block title
+  title= __('archive') + ' | ' + config.title
+block content
+  .post
+    .post-archive
+      .archive-wrap
+        each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
+          h2= -year
+          ul.listing
+            for post in posts
+                li
+                  a(href=url_for(post.path), title=post.title)
+                    span.date= post.date.format('MM') + '月' + post.date.format('DD')+ '日'
+                    span.tite
+                      +title(post)              
+  include _partial/paginator.jade

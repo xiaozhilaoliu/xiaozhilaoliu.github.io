@@ -1,117 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>代码块积累 | 小志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/app.css">
-  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
-</head>
+extends base
 
-<body>
-  <nav class="app-nav">
-  
-    
-      <a href="/.">home</a>
-    
-  
-    
-      <a href="/archives">archive</a>
-    
-  
-    
-      <a href="/atom.xml">rss</a>
-    
-  
-</nav>
+block title
+  title= page.title + ' | ' + config.title
 
-  <main class="post">
-  <article>
-  <h1 class="article-title">
-    <a href="/2017/03/13/代码块积累/">代码块积累</a>
-  </h1>
-
-  <section class="article-meta">
-    <p class="article-date">March 13 2017</p>
-  </section>
-
-  <section class="article-entry">
-    <h2 id="如何启动系统市场"><a href="#如何启动系统市场" class="headerlink" title="如何启动系统市场"></a>如何启动系统市场</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line"><span class="comment">//com.tecent.mm是自己app的包名</span></div><div class="line">intent.setData(</div><div class="line">	Uri.parse(<span class="string">"market://details?id=com.tecent.mm"</span>)</div><div class="line">	);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
-<h2 id="启动系统安装界面"><a href="#启动系统安装界面" class="headerlink" title="启动系统安装界面"></a>启动系统安装界面</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//启动代码</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installApk</span><span class="params">(<span class="keyword">final</span> Context context, <span class="keyword">final</span> Uri uri)</span> </span>&#123;</div><div class="line">    Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line"></div><div class="line">    Uri apkUri = uri;</div><div class="line">    <span class="comment">/*</span></div><div class="line">     	在 SDK &gt;= 24 的系统中，Intent 不允许携带 </div><div class="line">     	file:// 格式的数据，只能通过 provider 的形式共享数据</div><div class="line">    */</div><div class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</div><div class="line">        apkUri = FileProvider</div><div class="line">        .getUriForFile(context, context.getPackageName() </div><div class="line">        + <span class="string">".provider"</span>,</div><div class="line">                <span class="keyword">new</span> File(uri.getPath()));</div><div class="line">        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION</div><div class="line">                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</div><div class="line">    &#125;</div><div class="line">    intent.setDataAndType(apkUri, <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">    context.startActivity(intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//androidmanifeast.xml配置</div><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">    <span class="attr">android:authorities</span>=<span class="string">"$&#123;applicationId&#125;.provider"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">        <span class="attr">android:resource</span>=<span class="string">"@xml/provider_paths"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div><div class="line"></div><div class="line">//res中创建xml文件，并且创建provider_paths文件，内容如下</div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">paths</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">external-path</span></span></div><div class="line">        <span class="attr">name</span>=<span class="string">"external_files"</span></div><div class="line">        <span class="attr">path</span>=<span class="string">"."</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></div></pre></td></tr></table></figure>
-  </section>
-</article>
-
-  <div class="sharing grid">
-  <section class="profile grid-item grid">
-    <img class="avatar" src="http://7xrcp8.com1.z0.glb.clouddn.com/avatar.png" alt="avatar" />
-    <div class="grid-item">
-      <p class="title"> 小志 </p>
-      <p class="subtitle"> 开发进阶之路 </p>
-    <div>
-  </section>
-
-  <section class="share-btns">
-    <!-- <p> share it if you like it~ </p> -->
-    <a
-  class="twitter-share-button"
-  data-size="large"
-  data-via="DrakeLeung"
-  href="https://twitter.com/intent/tweet?text= id="如何启动系统市场"><a hr"
->
-  Tweet
-</a>
-
-<script>
-  window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  js.async = true;
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));
-</script>
-
-  </section>
-</div>
-
-
-  
-    
-<section class="article-comment">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
-<script>
-  var disqus_shortname = 'drakeleung';
-  
-  var disqus_url = 'http://yoursite.com/2017/03/13/代码块积累/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-  
-</main>
-
-</body>
-</html>
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+    if theme.duoshuo
+      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content)
+    .post-content
+      != page.content
+    include _partial/tag
+    include _partial/post_nav
+    if theme.duoshuo
+      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
+         .ds-share-inline
+            ul.ds-share-icons-16
+              li(data-toggle='ds-share-icons-more')
+                a(class='ds-more' href='javascript:void(0);') 分享到：
+              li
+                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
+              li
+                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
+              li
+                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
+              li
+                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
+            .ds-share-icons-more
+    include _partial/comments
