@@ -1,41 +1,2076 @@
-extends base
-- var current_title = page.title || tag.name || category.name || site.title
+<!doctype html>
 
-block title
-  if config.subtitle
-    title= config.title + ' | ' + config.subtitle
-  else
-    title= config.title
-block content
 
-  for post in page.posts.toArray()
-    .post
-      h2.post-title
-        include _partial/helpers
-        a(href=url_for(post.path))
-          +title(post)
-      .post-meta= post.date.format(config.date_format)
-      if theme.duoshuo
-        a.ds-thread-count(data-thread-key=post.path, href=url_for(post.path) + '#comments')
-      if theme.disqus
-        a.disqus-comment-count(data-disqus-identifier=post.path, href=url_for(post.path) + '#disqus_thread')
-      if post.description
-        .post-content
-          != post.description
-      else if post.excerpt
-        .post-content
-          != post.excerpt
-      else if post.content
-        - var br = post.content.indexOf('\n')
-        if br < 0
-          .post-content
-            != post.content
-        else
-          .post-content
-            != post.content.substring(0, br)
-      p(class='readmore')
-        a(href=url_for(post.path))= __('Readmore')
 
-  include _partial/paginator
-  if theme.disqus
-    script(id='dsq-count-scr', src='//#{theme.disqus}.disqus.com/count.js', async)
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="学习宝@Android开发工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小志">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="小志">
+<meta property="og:description" content="学习宝@Android开发工程师">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小志">
+<meta name="twitter:description" content="学习宝@Android开发工程师">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title> 小志 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小志</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">拳力以赴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/Go学习笔记/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/18/Go学习笔记/" itemprop="url">
+                  Go学习笔记一
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-18T15:55:42+08:00">
+                2017-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Go导包的顺序"><a href="#Go导包的顺序" class="headerlink" title="Go导包的顺序"></a>Go导包的顺序</h3><ul>
+<li>编译器首先首先那查找Go的安装目录；</li>
+<li>其次，按照顺序查找GOPATH变量里的目录;</li>
+<li>直到编译器找到一个满足的包，就停止查找。</li>
+</ul>
+<h3 id="命名导入"><a href="#命名导入" class="headerlink" title="命名导入"></a>命名导入</h3><ul>
+<li>当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；</li>
+<li><p>有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这个包;</p>
+<p>  <code>空白标识符</code></p>
+<pre><code>下划线字符（_）在Go语言里面称为空白标识符，有很多用法。这个标识符用来抛弃不想
+</code></pre><p>  继续使用的值，如给导入的包赋予一个空名字，或者忽略函数返回的你不感兴趣的值;</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> notebook</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	myfmt <span class="string">"chat"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">packageExample</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"测试导入重命名"</span>)</div><div class="line">	myfmt.CreateServer()</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Go开发工具"><a href="#Go开发工具" class="headerlink" title="Go开发工具"></a>Go开发工具</h3><ul>
+<li><p>go vet</p>
+<p>  <code>vet不是帮助开发人员写代码，而是检测代码的常见错误。可以检测以下错误：</code></p>
+<ul>
+<li>1、Printf类函数的方法时，方法签名的错误。</li>
+<li>2、定义常用的方法时，方法签名错误。</li>
+<li>3、错误的结构标签。</li>
+<li>4、没有指定字段名的结构字面量。</li>
+</ul>
+</li>
+<li>Go语言文档<ul>
+<li>命令行查看：<code>godoc tar(包名)</code></li>
+<li>浏览文档：<code>go doc -http=:5050(端口号)</code>    </li>
+</ul>
+</li>
+<li>社区开放的依赖管理工具 <code>godep、vender和gb</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/代码块积累/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/13/代码块积累/" itemprop="url">
+                  代码块积累
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-13T00:01:59+08:00">
+                2017-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="如何启动系统市场"><a href="#如何启动系统市场" class="headerlink" title="如何启动系统市场"></a>如何启动系统市场</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line"><span class="comment">//com.tecent.mm是自己app的包名</span></div><div class="line">intent.setData(</div><div class="line">	Uri.parse(<span class="string">"market://details?id=com.tecent.mm"</span>)</div><div class="line">	);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
+<h2 id="启动系统安装界面"><a href="#启动系统安装界面" class="headerlink" title="启动系统安装界面"></a>启动系统安装界面</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//启动代码</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installApk</span><span class="params">(<span class="keyword">final</span> Context context, <span class="keyword">final</span> Uri uri)</span> </span>&#123;</div><div class="line">    Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line"></div><div class="line">    Uri apkUri = uri;</div><div class="line">    <span class="comment">/*</span></div><div class="line">     	在 SDK &gt;= 24 的系统中，Intent 不允许携带 </div><div class="line">     	file:// 格式的数据，只能通过 provider 的形式共享数据</div><div class="line">    */</div><div class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</div><div class="line">        apkUri = FileProvider</div><div class="line">        .getUriForFile(context, context.getPackageName() </div><div class="line">        + <span class="string">".provider"</span>,</div><div class="line">                <span class="keyword">new</span> File(uri.getPath()));</div><div class="line">        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION</div><div class="line">                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</div><div class="line">    &#125;</div><div class="line">    intent.setDataAndType(apkUri, <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">    context.startActivity(intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//androidmanifeast.xml配置</div><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">    <span class="attr">android:authorities</span>=<span class="string">"$&#123;applicationId&#125;.provider"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">        <span class="attr">android:resource</span>=<span class="string">"@xml/provider_paths"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div><div class="line"></div><div class="line">//res中创建xml文件，并且创建provider_paths文件，内容如下</div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">paths</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">external-path</span></span></div><div class="line">        <span class="attr">name</span>=<span class="string">"external_files"</span></div><div class="line">        <span class="attr">path</span>=<span class="string">"."</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/面向对象六大原则/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/06/面向对象六大原则/" itemprop="url">
+                  面向对象六大原则
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T23:23:01+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、面向对象的六大原则"><a href="#一、面向对象的六大原则" class="headerlink" title="一、面向对象的六大原则"></a>一、面向对象的六大原则</h2><h3 id="1、单一原则S"><a href="#1、单一原则S" class="headerlink" title="1、单一原则S"></a>1、单一原则<code>S</code></h3><ul>
+<li>英文名称：Single Responsibility Principle;缩写是SRP;</li>
+<li>定义：就一个类而言，应该仅有一个引起他变化的原因；</li>
+</ul>
+<h3 id="2、开闭原则O"><a href="#2、开闭原则O" class="headerlink" title="2、开闭原则O"></a>2、开闭原则<code>O</code></h3><ul>
+<li>英文名称：Open Close Principle，缩写是OCP；</li>
+<li>定义：软件中的对象（类、模块、函数等）应该对于扩展开放，但是，对于修改是封闭的。</li>
+<li>现状：当软件需求发生变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。方然，在实际开发中，修改原有代码、扩展代码往往是同事存在的。</li>
+</ul>
+<h3 id="3、里氏替换原则L"><a href="#3、里氏替换原则L" class="headerlink" title="3、里氏替换原则L"></a>3、里氏替换原则<code>L</code></h3><ul>
+<li>英文名称：Liskov Sybstitution Ptoncipal,缩写是LSP;</li>
+<li>定义<ul>
+<li>第一种：如果对每一个类型为S的对象O1，都有类型T的对象O2，使得以T定义的所有程序P在所有的对象O1都替换成O2时，程序P的行为没有发生变化，那么类型S是类型T的子类型。</li>
+<li>第二种：所有引入基类的地方必须能够使用其子类对象；</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、依赖倒置原则D"><a href="#4、依赖倒置原则D" class="headerlink" title="4、依赖倒置原则D"></a>4、依赖倒置原则<code>D</code></h3><ul>
+<li>英文名称：Dependence Inversion Principle;缩写是DIP;</li>
+<li>定义：依赖倒置原则指代了一种特定的解耦形式，使得高层次的模块不依赖与低层次的模块的实现细节的目的，依赖模块被颠倒了。</li>
+<li>关键点：<ul>
+<li>高层模块不应该以来低层次模块，两者都应该以来其抽象。</li>
+<li>抽象不应该依赖细节。（抽象值接口或抽象类）</li>
+<li>细节应该依赖抽象。  </li>
+</ul>
+</li>
+<li>java中的表现</li>
+</ul>
+<blockquote>
+<p>模块之间的以来通过抽象发生，实现类之间不直接发生关系，其依赖关系是通过接口或者抽象类产生的。</p>
+</blockquote>
+<h3 id="5、接口隔离原则I"><a href="#5、接口隔离原则I" class="headerlink" title="5、接口隔离原则I"></a>5、接口隔离原则<code>I</code></h3><ul>
+<li>英文名称：InterfaceSegregation Principles</li>
+<li>定义：<ul>
+<li>第一种：客户端不应该依赖他不需要的接口。</li>
+<li>第二种：类间的依赖关系应该建立在最小的接口上。</li>
+</ul>
+</li>
+<li>目的<ul>
+<li>臃肿的接口拆分成更小个更具体的接口，使系统解耦，容易重构、更改和重新部署。</li>
+<li>让以来的接口尽可能的小。 </li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Bob大叔在21世纪早期，将单一原则、开闭原则、里氏替换、接口隔离以及以来倒置5个原则定义为SOLID原则，作为面向对象的5个基本原则</strong></p>
+<h3 id="6、迪米特原则"><a href="#6、迪米特原则" class="headerlink" title="6、迪米特原则"></a>6、迪米特原则</h3><ul>
+<li>英文名称：Law of Demter</li>
+<li>定义：一个对象应该对其他对象有最少的了解。通俗的的讲，一个类应该对自己需要耦合或者调运的类知道最少，类的内部如何实现与调运着或者依赖着没有关系，调运者或者依赖着只需知道他需要的方法即可，其他的一概不管。类与类之间知道的越多，耦合就越大，当一个类发生改变时，影响也就越大。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/19/Android studio关联redmine/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/19/Android studio关联redmine/" itemprop="url">
+                  Android Studio关联redmine
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-19T23:25:42+08:00">
+                2017-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>为什么要关联<ul>
+<li>可否在我们的开发工具中查看以及处理分配到自己的issue，而不需要打开redmine工具？</li>
+<li>对于重大的issue，需要创建分之修复，是否有办法将issue和分之对应，便于我们管理？</li>
+</ul>
+</li>
+<li><p>怎么做</p>
+<pre><code>首先，关于上面的疑问，答案是肯定的，有方法，而且也特别简单，那就
+是Android Studio自带的工具。
+</code></pre><ul>
+<li>步骤一：打开server配置，打开Android Studio，Tools-&gt;Tasks&amp;Contexts-&gt;Configure Servers；</li>
+<li>步骤二：添加redmine服务点击配置面板右上角的+号，选择Redmine；<br><img src="/img/As关联redmine/add_server.png" alt=""></li>
+<li>步骤三，配置账号，这里很简单，就不详细说了<br><img src="/img/As关联redmine/config_servers.png" alt=""></li>
+<li>配置完成，点击test，测试一下是否成功。</li>
+<li>查看，分配到自己的issue，Tools-&gt;Tasks&amp;Contexts-&gt;Open Task;<br><img src="/img/As关联redmine/task_search.png" alt=""></li>
+<li>关联issue和分支，点击想关联的issue，Create branch为你想要命名的分之名字。<br><img src="/img/As关联redmine/open_task.png" alt=""></li>
+<li>切换到创建的任务分之，Tools-&gt;Tasks&amp;Contexts-&gt;Switch task;这里显示关联的分之，可以快速切换；<br><img src="/img/As关联redmine/switch_task.png" alt=""></li>
+<li>修复完成之后，可以关闭任务！Tools-&gt;Tasks&amp;Contexts-&gt;Close Active task，他就会将代码提交，并且合并到主分支（主分支就是你创建bug分之的源分之）</li>
+</ul>
+</li>
+<li>带来的好处<ul>
+<li>方便查看分配到自己的issue</li>
+<li>修复bug，关联分支，不影响现有代码和分支</li>
+<li>修复完成之后，关闭任务，自动提交和合并代码！ </li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/29/2016年度个人总结/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/2016年度个人总结/" itemprop="url">
+                  2016年度个人总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-29T23:00:46+08:00">
+                2016-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/总结/" itemprop="url" rel="index">
+                    <span itemprop="name">总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>悄悄然，2016年已经接近尾声，每年都会在自己的qq空间发一篇长文回顾和总结，今年也不例外。同时也要响应领导的号召！😝，开个玩笑。过去的一年，一切都在变好，自己也逐渐对个人的职业清晰起来，当然，遗憾也有很多，下面我就一一通过，工作，生活方面来说。</p>
+<h1 id="工作方式和效率方面"><a href="#工作方式和效率方面" class="headerlink" title="工作方式和效率方面"></a>工作方式和效率方面</h1><p>从毕业到现在，对自己的工作热爱=程度从未降低，自己也一直自认为算技术geek，而且，在工作中，较真的劲，使得自己总能在工作中，不断的突破，是自己在技术层面，有了更深的见解和认识。</p>
+<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><ul>
+<li>插件化和热修复的<ol>
+<li>插件化，就是将软件的功能或者模块做成插件，这个插件是可以独立运行，热修复，就是，采用增量补丁的方式，通过hook技术，实现线上软件bug修复，其两种使用的技术手段类似，但是，概念是完全不一样的，曾经我自己的弄混了。</li>
+<li>从以前的完成迷糊，到现在，能够大致理清楚市面上几种方案的实现原理，当然，自己也做过一些小的demo；遗憾的事，这一块，一直没有在项目中实践，毕竟，如果在项目中实践，一定会遇到各种各样的问题，明年争取在项目中集成。</li>
+<li>个人成就方面，也就是实现了几个demo。还需努力，目标是，自己根据现有技术，开发一个热修复sdk和gradle插件。</li>
+</ol>
+</li>
+<li>持续发布<ol>
+<li>从去年开始接触敏捷开发，这个概念其实最终达到的目的，就是更快的更有质量的迭代功能，以适应这个日益变化的互联网时代。至于过程，以及每家公司内部如何实践，每家公司确实不大一样，我也只是懂点表面但是根据我以前一些实践，和看过几本说推荐的实践方式，还是很赞同看板流程这个实践，<strong>用户故事-&gt;产品设计-&gt;开发-&gt;测试-&gt;回归-&gt;上线</strong>；所谓看板，就是，让本次迭代所有相关人员，知道你目前的进展，现在进行到哪一步，无论有任何调整，每个角色都可以在现有进度情况下做出调整，以适应迭代中的不确定因素。辅助工具很多，trello，remine都是很不错的。  </li>
+<li>敏捷开发，既然是开发，肯定离不开一个概念，开发，开发就是为了发布，那么，基于现在的打包流程，android studio，打一个包，需要五分钟左右，电脑差点，十分钟也有可能，然后在上传到fir，这本是是一个相对简单的流程；但是就是他，会引起很多问题，譬如：你可能会打断一个正在开发中的程序员、每个程序员使用的环境不一样、每次打包可能对应的代码不一致、每次都是手动打包上传（low不low，是不是该把程序员的精力放在更有意义的事上面）、版本号怎么维护、每次打包依靠手动修改versioncode（如何保证自增呢），基于种种问题，我根据以前的一些实践，搭建了一套粗陋的持续构建框架。</li>
+<li>我的持续构建框架，整体是基于go cd的，在搭建过程中，是遇到很多坑的，本人并非运维出身，对于linux也是熟悉，根本达不到熟练的水平；其中就遇到过，go cd无法clone代码，明明加了权限也不行，go cd只是一个ci架构，具体的打包，还是需要自己来写脚本，那么就查找各种资料，学习shell的相关知识，遇到最多的也是权限问题和环境问题；打包脚本搞定了，接下来就是，我如何保证versioncode自增，verisonname可以方便自定义呢？我的解决方案是，verisoncode持久化在一个文件中，每次打包自增然后保存，versionname通过go cd以参数的方式传给打包脚本；打包脚本，再把versioncode和versionname，以参数方式传给gradle，gradle中，会读取这两个参数，如果没有参数，就会使用默认；这样好处就是，既可以使用go cd打包，也不影响我们编译运行，一举两得；<strong>环境中，遇到最麻烦的事，就是在centos中，使用android sdk打包，他会有缺少glib-2.14库缺少的问题，这个也用了很长时间解决，就赢个这个，弄坏了好几台服务器，这里特别感谢我们的运维兄弟；</strong></li>
+<li>持续化环境搭建的好处<ul>
+<li>同样的环境，同样的代码</li>
+<li>操作简单，主要有权限，都可以执行</li>
+<li>打包发布一步到位，这个才对得起敏捷开发这个词。</li>
+<li>对于多环境的打包，区分配置，不容易混淆。</li>
+<li>个人观点就是，能用工具的，就不要人力去做了，太累了，而且人犯错率比较高。总之，就是提高效率</li>
+</ul>
+</li>
+<li>以后可优化的点<ul>
+<li>速度采用feeline或者okbuck，提升打包速度</li>
+<li>打包自动化，增加预警和提示功能，（比如规定每天凌晨打包，每次上午八点，将新版本地址发到测试人员和灰度测试人员手中。）</li>
+<li>代码质量管理，对于提交的代码，自动进行审核，生成报告，提交到审核人员手中。</li>
+<li>自动化测试，对于每天晚上的自动化打包，执行自动化测试，生成报告，发给相关人员</li>
+<li>单元测试，代码中大量使用单元测试，每一次修改功能，都会自动执行单元测试，如果不通过，发出预警。<a href="https://xiaozhilaoliu.github.io/2016/12/04/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/" target="_blank" rel="external">单元测试的好处</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Go语言<ul>
+<li>go是一门类c的语言，语法简单，从2012年开始，我就很关注，只是一直没有投入学习，了解的也很肤浅，今年，利用空闲时间，开始学习和code一些代码，当然他的优点，毫无疑问，那就是多线程并发处理做得特别好，对于我做前端开发，后台做得不多，所以这一块体会不深，我体会最深刻就是，语法，简单，简单，简单，用一个结构体，可以搞定一个java类，用一个接口代码，可以代替一个java的接口文件，再也没有implemets，extends的这些关键词，但是他以更简单的方式具备了这两个功能。还有，我写的时候，最方便的就是，我的一个方法可以有两个返回参数，比如我要同事拿到一个集合的索引和值，java就需要分开获取，而在go中，同时就可以拿到，爽吧？ </li>
+<li>成就就是，了解了beego这个框架，更觉websocket和longpoolling的demo，coding了一遍，感触颇深。</li>
+<li>来年计划<ul>
+<li>用go实现一套基于xmpp的协议。⛽️</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="工作方式和效率方面-1"><a href="#工作方式和效率方面-1" class="headerlink" title="工作方式和效率方面"></a>工作方式和效率方面</h2><ul>
+<li>今年看了很多产品的书籍，自己对于做产品经理兴趣不大；只是想让自己有产品的思维，对于每个需求，都能考虑到其正真的目的和价值，这样才有有助于我在代码中更好的优化和实现。以前，对于需求，我的方式是do，现在我是what，why，how。然后才是do，首先我要弄懂它是什么，其次为什么要这个需求，能不能有别的替代方案（至少是个建议），以及我改如何做，与产品达到一致之后，才开始做开发，这样就基本能保证做出来的东西和需求基本接近，当然，这个也要依赖持续发布，随时给产品shou case，入股哦有问题，悬崖勒马，及早更正。</li>
+<li>工作方式，也是一个经验的积累，充分利用自己的碎片时间解决碎片的事情，在工作的时候保持专注，替身效率，不要让自己看起来很忙，但是不出工作，虽然我没有实践番茄🍅工作法，因为毕竟别人打断你，你不理别人，还是很不礼貌的（我个人这样感觉）；其实，一个程序员，每天真正投入工作的时间，有四个小时就不错了，其他全部走神和开溜，但是这个四个小时如果把握好，足够你完成一天的工作；不要用战术上的勤奋，来掩盖你战略上的懒惰；小懒虫最重要，其实每个人都应该反思？你为什么要加班那么晚？而别人却不需要，还可以完成工作？（推荐看一本水，你从未真正努力过）     </li>
+</ul>
+<h1 id="生活方面"><a href="#生活方面" class="headerlink" title="生活方面"></a>生活方面</h1><ul>
+<li>今年开始，慢慢的将生活和工作分开了，周六周日也尽量充实，天气暖和的时候，骑行上下班，练就了一个好身体，程序与记着，身体是革命的本钱。周六周日也出去走走，逛逛，看看电影，在公园看会广场舞，甚至一个人会去ktv，但是每次都那么尽兴；总之发现，今年以来，，工作压力也很大，但是相对能调节的很好，希望来年继续保持。  </li>
+<li>几年预计的去一趟丽江、大理、金沙滩也泡汤了，一直都太忙了。 明年目标，去一趟泰国。⛽️</li>
+</ul>
+<h1 id="感情方面"><a href="#感情方面" class="headerlink" title="感情方面"></a>感情方面</h1><ul>
+<li>今年前半年，接触了一段感情，也许早该结束的，是拖到那么晚；不过，命运是公平的，她也结婚了，我现在也找到属于自己的人，也许这一年，最大的感触和成长就是爱情，但是这里就不长篇大论了。</li>
+</ul>
+<h1 id="尾言"><a href="#尾言" class="headerlink" title="尾言"></a>尾言</h1><ul>
+<li>每一年都在成长，2016年，我也努力了，当然也有遗憾，比如技术上，对于音视频这一块，一直没有深入去学习编码；也许，这样我们才会珍惜光阴，来年加油！继续朝着自己方向发展，也许我也不知道那么方向具体是什么，但是我知道，肯定与技术有关！   </li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/04/单元测试的重要性/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/04/单元测试的重要性/" itemprop="url">
+                  单元测试的重要性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-04T23:21:49+08:00">
+                2016-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="单元测试的个人认识"><a href="#单元测试的个人认识" class="headerlink" title="单元测试的个人认识"></a>单元测试的个人认识</h2><ul>
+<li>从解决问题角度出发<ul>
+<li>如何解决重构过程中，关联性影响？</li>
+<li>如何在保证每次提交的push的代码，都是完整可运行的？</li>
+<li>如何快速的验证，某个函数、类以及功能是正确的？</li>
+<li>如何在不做相信设计的情况下，能够预先对代码的设计，形成一个基本架构？</li>
+</ul>
+</li>
+<li><p>从带来的好处出发</p>
+<ul>
+<li>大大的减少bug。</li>
+<li>快速的定位bug</li>
+<li>对代码的设计有一定的规范，提高代码质量</li>
+<li>大大的提升开发效率</li>
+</ul>
+</li>
+<li><p>对于开发者的挑战</p>
+<ul>
+<li>除了管理程序代码，还的维护测试代码</li>
+<li>没有一定的时间的实践，对数会认为这个过程太复杂，直接放弃。</li>
+<li>要求写出能够测试的代码，对代码质量有了更高的要求。</li>
+</ul>
+</li>
+<li>如何更好的实践<ul>
+<li>单元测试自动化</li>
+<li>单元测试效率提升</li>
+<li>频繁的运行单元测试</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/16/代码重构读书笔记/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/16/代码重构读书笔记/" itemprop="url">
+                  重构代码读书笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T00:38:22+08:00">
+                2016-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="重构的第一步"><a href="#重构的第一步" class="headerlink" title="重构的第一步"></a>重构的第一步</h2><pre><code>重构中，有几个很重要的原则和注意点。
+</code></pre><ul>
+<li>如果你发现自己需要为程序添加一个特性，而代码结构使你无法很方便地达成目的，那就先重构那个程序，使特性的添加比较容易进行，然后再添加特性。</li>
+<li>重构前，先检查是否有一套可靠的测试机制。这些测试必须有自我检验能力。</li>
+<li>重构技术就是以微小的步伐修改程序。如果你犯下错误，很容易便可发现它。</li>
+<li>任何一个傻瓜都能写出技术及可以理解的代码。唯有写出人类容易理解的代码，才是优秀的程序员。</li>
+</ul>
+<h2 id="重构原则"><a href="#重构原则" class="headerlink" title="重构原则"></a>重构原则</h2><ul>
+<li><p>何谓重构</p>
+<pre><code>有一个很重要的原则，重构不会改变软件可观察的行为--重构之后软件功
+能一如以往。任何最终用户或者其他程序员，都不知道已经有东西发生了
+变化。 
+</code></pre><ul>
+<li>名词：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。</li>
+<li>动词：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。</li>
+</ul>
+</li>
+<li>为何重构<ul>
+<li>重构改进软件设计</li>
+<li>重构使软件更容易理解</li>
+<li>重构帮助找到bug</li>
+<li>重构提高编程速度</li>
+</ul>
+</li>
+<li><p>何时重构</p>
+<pre><code>重构是不需要专门安排时间来进行重构，答案是否定的；有一个注明
+的`三次法则`，事不过三，三则重构；也就是，第一次做某件事情只管去
+做；第二次做类似的事情会产生反感；第三次再做类似的事情，就应该重
+构。
+</code></pre><ul>
+<li>添加新功能时重构 </li>
+<li>修改错误时重构</li>
+<li>复审代码时重构</li>
+<li></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/25/优雅的处理错误/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/25/优雅的处理错误/" itemprop="url">
+                  优雅的处理错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-25T00:48:05+08:00">
+                2016-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/代码优化/" itemprop="url" rel="index">
+                    <span itemprop="name">代码优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="why"><a href="#why" class="headerlink" title="why"></a>why</h3><ul>
+<li>许多程序，我们会设计的错误处理和异常处理，简单的登录，各种异常信<br>息，面貌错误、手机号检测等等；但是如果这些处理不当，它就会搞乱你<br>的代码逻辑，会导致代码的可读性变得很差。</li>
+</ul>
+<h3 id="how"><a href="#how" class="headerlink" title="how"></a>how</h3><ul>
+<li><p>使用异常而非返回码</p>
+<p>  简而言之，如果有诸多错误信息，你通过状态码来处理和识别，会导致时<br>  间异常，你根本无法区分这些错误是什么，所以时候用一个表意更清楚的<br>  异常类，显得简单可靠</p>
+</li>
+<li><p>给出异常发生的环境说明</p>
+<p>  每个抛出的异常，都应该提供左后的环境说明，以便于判断错误的来源和<br>  出处</p>
+</li>
+<li><p>调用者需要定义异常类</p>
+</li>
+<li><p>别返回null值</p>
+<p>  返回null这样通常都会引起空指针异常，如果上层代码没有捕获这个异<br>  常，就会引起奔溃。</p>
+</li>
+<li><p>别传递null</p>
+<p>  传递null，同样也会在不严谨的代码中导致奔溃。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/21/敏捷开发读后感/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/21/敏捷开发读后感/" itemprop="url">
+                  <互联网敏捷开发>读后感
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-21T23:17:39+08:00">
+                2016-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、为什么读此书"><a href="#一、为什么读此书" class="headerlink" title="一、为什么读此书"></a>一、为什么读此书</h2><ul>
+<li>作为一名Android开发工程师，对于技术的追求是无止境的。技术的世界也是乐趣无穷，<pre><code>但是，个人还是希望，扩展自己的知识面；无论出于自身发展考虑，还是为公司考虑，
+对于更好的管理团队，更好的理解团队管理，都是大有利处。当你知道公司的敏捷文华，
+领导的一切动机的时候，你才能更好的发挥自己的职能，也能出于公司的层面去考虑一些事情，在平时的工作中，你就像如鱼得水一般
+，事业也必将蒸蒸日上。
+</code></pre></li>
+</ul>
+<h2 id="二、敏捷开发的一些感悟"><a href="#二、敏捷开发的一些感悟" class="headerlink" title="二、敏捷开发的一些感悟"></a>二、敏捷开发的一些感悟</h2><ul>
+<li>何为敏捷开发<ul>
+<li>《百度百科》上面有一个很好的解释，‘敏捷方法有时候被误认为是无计划性和纪律性的方法，<br>实际上更确切的说法是敏捷方法强调适应性而非预见性’，我非常同意这句话，各别公司对于敏捷的认识比较肤浅，<br>当然，我本人也理解的也是很一般；</li>
+<li>首先说适应性，也就是说，敏捷可以很快的调整计划，快速制定新的发布计划<br>  和发布方案，也就是从需求提出-&gt;产品确认-&gt;开发确认可行性，然后结合研发人员的时间评估，与项目经理的意见<br>  相结合，制定新的发布方案和发布计划，也就是说，拥有变化，能很好地适应各种需求的变更，也符合互联网<br>  周期短的特性，想一想，当你产品做到一半，发现原先的产品需要有需求的变更，如果利用敏捷开发，就能够<br>  快速的调整改变；</li>
+<li>其次是非预见性，也就是，一个项目的进展，毕竟存在很多未知的因素，虽然前期的准备<br>  工作，能够降低未知因素，但是，绝对不会说是完全消除；很简单，比如，有一次，我们做好了<br>  一次准备工作；发布计划、发布方案、详细技术设计、环境部署，全部很ok，但是最终，只是<br>  因为需求方的一个需求，线上的版本，可以动态切换环境，就由于这个简单的需求，需要<br>  我们重新设计，开发，测试，以及部署，这个过程绝对不会小于2个工作天，而且牵连也很大，<br>  而对于敏捷，我们这个敏捷团队，就针对这个变化，快速调整，快速制定，快速开发，快速上线，<br>  而不是和以往的流程，比较依赖固定的计划和文档，对于一些变更的内容，修改起来，牵扯的关系很复杂，<br>  很难刀刀这一目的。</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/21/代码整洁之道读后感/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/21/代码整洁之道读后感/" itemprop="url">
+                  读书笔记一
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-21T00:38:51+08:00">
+                2016-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="代码整洁知道"><a href="#代码整洁知道" class="headerlink" title="代码整洁知道"></a>代码整洁知道</h2><h3 id="关于注释"><a href="#关于注释" class="headerlink" title="关于注释"></a>关于注释</h3><ul>
+<li>去掉那些看上去废话的注释</li>
+<li>如果一些代码被删除而且没有删除，why？为什么不删除？</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="hezq" />
+          <p class="site-author-name" itemprop="name">hezq</p>
+          <p class="site-description motion-element" itemprop="description">学习宝@Android开发工程师</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hezq</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

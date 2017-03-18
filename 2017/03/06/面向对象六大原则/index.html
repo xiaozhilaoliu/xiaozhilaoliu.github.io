@@ -1,48 +1,727 @@
-extends base
+<!doctype html>
 
-block title
-  title= page.title + ' | ' + config.title
 
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if page.categories.length > 0
-        span= ' | '
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
-        span#busuanzi_container_page_pv= ' | '
-          span#busuanzi_value_page_pv
-          span= ' ' + __('Hits')
-    if theme.duoshuo
-      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
-    if theme.disqus
-      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
-    if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content)
-    .post-content
-      != page.content
-    include _partial/tag
-    include _partial/post_nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
-    include _partial/comments
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一、面向对象的六大原则1、单一原则S
+英文名称：Single Responsibility Principle;缩写是SRP;
+定义：就一个类而言，应该仅有一个引起他变化的原因；
+
+2、开闭原则O
+英文名称：Open Close Principle，缩写是OCP；
+定义：软件中的对象（类、模块、函数等）应该对于扩展开放，但是，对于修改是封闭的。
+现状：当软件需求发生变化时，我们应该尽量通过扩展的方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象六大原则">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/面向对象六大原则/index.html">
+<meta property="og:site_name" content="小志">
+<meta property="og:description" content="一、面向对象的六大原则1、单一原则S
+英文名称：Single Responsibility Principle;缩写是SRP;
+定义：就一个类而言，应该仅有一个引起他变化的原因；
+
+2、开闭原则O
+英文名称：Open Close Principle，缩写是OCP；
+定义：软件中的对象（类、模块、函数等）应该对于扩展开放，但是，对于修改是封闭的。
+现状：当软件需求发生变化时，我们应该尽量通过扩展的方">
+<meta property="og:updated_time" content="2017-03-07T14:56:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象六大原则">
+<meta name="twitter:description" content="一、面向对象的六大原则1、单一原则S
+英文名称：Single Responsibility Principle;缩写是SRP;
+定义：就一个类而言，应该仅有一个引起他变化的原因；
+
+2、开闭原则O
+英文名称：Open Close Principle，缩写是OCP；
+定义：软件中的对象（类、模块、函数等）应该对于扩展开放，但是，对于修改是封闭的。
+现状：当软件需求发生变化时，我们应该尽量通过扩展的方">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/06/面向对象六大原则/"/>
+
+
+
+
+
+  <title> 面向对象六大原则 | 小志 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小志</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">拳力以赴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/面向对象六大原则/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hezq">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小志">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小志" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                面向对象六大原则
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T23:23:01+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、面向对象的六大原则"><a href="#一、面向对象的六大原则" class="headerlink" title="一、面向对象的六大原则"></a>一、面向对象的六大原则</h2><h3 id="1、单一原则S"><a href="#1、单一原则S" class="headerlink" title="1、单一原则S"></a>1、单一原则<code>S</code></h3><ul>
+<li>英文名称：Single Responsibility Principle;缩写是SRP;</li>
+<li>定义：就一个类而言，应该仅有一个引起他变化的原因；</li>
+</ul>
+<h3 id="2、开闭原则O"><a href="#2、开闭原则O" class="headerlink" title="2、开闭原则O"></a>2、开闭原则<code>O</code></h3><ul>
+<li>英文名称：Open Close Principle，缩写是OCP；</li>
+<li>定义：软件中的对象（类、模块、函数等）应该对于扩展开放，但是，对于修改是封闭的。</li>
+<li>现状：当软件需求发生变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。方然，在实际开发中，修改原有代码、扩展代码往往是同事存在的。</li>
+</ul>
+<h3 id="3、里氏替换原则L"><a href="#3、里氏替换原则L" class="headerlink" title="3、里氏替换原则L"></a>3、里氏替换原则<code>L</code></h3><ul>
+<li>英文名称：Liskov Sybstitution Ptoncipal,缩写是LSP;</li>
+<li>定义<ul>
+<li>第一种：如果对每一个类型为S的对象O1，都有类型T的对象O2，使得以T定义的所有程序P在所有的对象O1都替换成O2时，程序P的行为没有发生变化，那么类型S是类型T的子类型。</li>
+<li>第二种：所有引入基类的地方必须能够使用其子类对象；</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、依赖倒置原则D"><a href="#4、依赖倒置原则D" class="headerlink" title="4、依赖倒置原则D"></a>4、依赖倒置原则<code>D</code></h3><ul>
+<li>英文名称：Dependence Inversion Principle;缩写是DIP;</li>
+<li>定义：依赖倒置原则指代了一种特定的解耦形式，使得高层次的模块不依赖与低层次的模块的实现细节的目的，依赖模块被颠倒了。</li>
+<li>关键点：<ul>
+<li>高层模块不应该以来低层次模块，两者都应该以来其抽象。</li>
+<li>抽象不应该依赖细节。（抽象值接口或抽象类）</li>
+<li>细节应该依赖抽象。  </li>
+</ul>
+</li>
+<li>java中的表现</li>
+</ul>
+<blockquote>
+<p>模块之间的以来通过抽象发生，实现类之间不直接发生关系，其依赖关系是通过接口或者抽象类产生的。</p>
+</blockquote>
+<h3 id="5、接口隔离原则I"><a href="#5、接口隔离原则I" class="headerlink" title="5、接口隔离原则I"></a>5、接口隔离原则<code>I</code></h3><ul>
+<li>英文名称：InterfaceSegregation Principles</li>
+<li>定义：<ul>
+<li>第一种：客户端不应该依赖他不需要的接口。</li>
+<li>第二种：类间的依赖关系应该建立在最小的接口上。</li>
+</ul>
+</li>
+<li>目的<ul>
+<li>臃肿的接口拆分成更小个更具体的接口，使系统解耦，容易重构、更改和重新部署。</li>
+<li>让以来的接口尽可能的小。 </li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Bob大叔在21世纪早期，将单一原则、开闭原则、里氏替换、接口隔离以及以来倒置5个原则定义为SOLID原则，作为面向对象的5个基本原则</strong></p>
+<h3 id="6、迪米特原则"><a href="#6、迪米特原则" class="headerlink" title="6、迪米特原则"></a>6、迪米特原则</h3><ul>
+<li>英文名称：Law of Demter</li>
+<li>定义：一个对象应该对其他对象有最少的了解。通俗的的讲，一个类应该对自己需要耦合或者调运的类知道最少，类的内部如何实现与调运着或者依赖着没有关系，调运者或者依赖着只需知道他需要的方法即可，其他的一概不管。类与类之间知道的越多，耦合就越大，当一个类发生改变时，影响也就越大。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/19/Android studio关联redmine/" rel="next" title="Android Studio关联redmine">
+                <i class="fa fa-chevron-left"></i> Android Studio关联redmine
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/13/代码块积累/" rel="prev" title="代码块积累">
+                代码块积累 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="hezq" />
+          <p class="site-author-name" itemprop="name">hezq</p>
+          <p class="site-description motion-element" itemprop="description">学习宝@Android开发工程师</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、面向对象的六大原则"><span class="nav-number">1.</span> <span class="nav-text">一、面向对象的六大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、单一原则S"><span class="nav-number">1.1.</span> <span class="nav-text">1、单一原则S</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、开闭原则O"><span class="nav-number">1.2.</span> <span class="nav-text">2、开闭原则O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、里氏替换原则L"><span class="nav-number">1.3.</span> <span class="nav-text">3、里氏替换原则L</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、依赖倒置原则D"><span class="nav-number">1.4.</span> <span class="nav-text">4、依赖倒置原则D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、接口隔离原则I"><span class="nav-number">1.5.</span> <span class="nav-text">5、接口隔离原则I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、迪米特原则"><span class="nav-number">1.6.</span> <span class="nav-text">6、迪米特原则</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hezq</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
