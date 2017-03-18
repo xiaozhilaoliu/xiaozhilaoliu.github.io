@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="项目管理," />
+  <meta name="keywords" content="代码," />
 
 
 
@@ -84,28 +84,37 @@
 
 
 
-<meta name="description" content="一、为什么读此书
-作为一名Android开发工程师，对于技术的追求是无止境的。技术的世界也是乐趣无穷，但是，个人还是希望，扩展自己的知识面；无论出于自身发展考虑，还是为公司考虑，
-对于更好的管理团队，更好的理解团队管理，都是大有利处。当你知道公司的敏捷文华，
-领导的一切动机的时候，你才能更好的发挥自己的职能，也能出于公司的层面去考虑一些事情，在平时的工作中，你就像如鱼得水一般
-，事业也必将蒸蒸日上">
+<meta name="description" content="打包和工具链Go导包的顺序
+编译器首先首先那查找Go的安装目录；
+其次，按照顺序查找GOPATH变量里的目录;
+直到编译器找到一个满足的包，就停止查找。
+
+命名导入    当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；
+所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；
+    有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="<互联网敏捷开发>读后感">
-<meta property="og:url" content="http://yoursite.com/2016/10/21/敏捷开发读后感/index.html">
+<meta property="og:title" content="Go学习笔记一">
+<meta property="og:url" content="http://yoursite.com/2017/03/18/Go学习笔记/index.html">
 <meta property="og:site_name" content="小志">
-<meta property="og:description" content="一、为什么读此书
-作为一名Android开发工程师，对于技术的追求是无止境的。技术的世界也是乐趣无穷，但是，个人还是希望，扩展自己的知识面；无论出于自身发展考虑，还是为公司考虑，
-对于更好的管理团队，更好的理解团队管理，都是大有利处。当你知道公司的敏捷文华，
-领导的一切动机的时候，你才能更好的发挥自己的职能，也能出于公司的层面去考虑一些事情，在平时的工作中，你就像如鱼得水一般
-，事业也必将蒸蒸日上">
-<meta property="og:updated_time" content="2016-11-27T15:50:10.000Z">
+<meta property="og:description" content="打包和工具链Go导包的顺序
+编译器首先首先那查找Go的安装目录；
+其次，按照顺序查找GOPATH变量里的目录;
+直到编译器找到一个满足的包，就停止查找。
+
+命名导入    当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；
+所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；
+    有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这">
+<meta property="og:updated_time" content="2017-03-18T09:44:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="<互联网敏捷开发>读后感">
-<meta name="twitter:description" content="一、为什么读此书
-作为一名Android开发工程师，对于技术的追求是无止境的。技术的世界也是乐趣无穷，但是，个人还是希望，扩展自己的知识面；无论出于自身发展考虑，还是为公司考虑，
-对于更好的管理团队，更好的理解团队管理，都是大有利处。当你知道公司的敏捷文华，
-领导的一切动机的时候，你才能更好的发挥自己的职能，也能出于公司的层面去考虑一些事情，在平时的工作中，你就像如鱼得水一般
-，事业也必将蒸蒸日上">
+<meta name="twitter:title" content="Go学习笔记一">
+<meta name="twitter:description" content="打包和工具链Go导包的顺序
+编译器首先首先那查找Go的安装目录；
+其次，按照顺序查找GOPATH变量里的目录;
+直到编译器找到一个满足的包，就停止查找。
+
+命名导入    当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；
+所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；
+    有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这">
 
 
 
@@ -133,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/21/敏捷开发读后感/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/18/Go学习笔记/"/>
 
 
 
 
 
-  <title> <互联网敏捷开发>读后感 | 小志 </title>
+  <title> Go学习笔记一 | 小志 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +269,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/21/敏捷开发读后感/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/Go学习笔记/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="hezq">
@@ -284,7 +293,7 @@
             
             
               
-                <互联网敏捷开发>读后感
+                Go学习笔记一
               
             
           </h1>
@@ -297,8 +306,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-21T23:17:39+08:00">
-                2016-10-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-18T15:55:42+08:00">
+                2017-03-18
               </time>
             
 
@@ -316,8 +325,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
                   </a>
                 </span>
 
@@ -351,20 +360,34 @@
       
 
       
-        <h2 id="一、为什么读此书"><a href="#一、为什么读此书" class="headerlink" title="一、为什么读此书"></a>一、为什么读此书</h2><ul>
-<li>作为一名Android开发工程师，对于技术的追求是无止境的。技术的世界也是乐趣无穷，<pre><code>但是，个人还是希望，扩展自己的知识面；无论出于自身发展考虑，还是为公司考虑，
-对于更好的管理团队，更好的理解团队管理，都是大有利处。当你知道公司的敏捷文华，
-领导的一切动机的时候，你才能更好的发挥自己的职能，也能出于公司的层面去考虑一些事情，在平时的工作中，你就像如鱼得水一般
-，事业也必将蒸蒸日上。
-</code></pre></li>
+        <h2 id="打包和工具链"><a href="#打包和工具链" class="headerlink" title="打包和工具链"></a>打包和工具链</h2><h3 id="Go导包的顺序"><a href="#Go导包的顺序" class="headerlink" title="Go导包的顺序"></a>Go导包的顺序</h3><ul>
+<li>编译器首先首先那查找Go的安装目录；</li>
+<li>其次，按照顺序查找GOPATH变量里的目录;</li>
+<li>直到编译器找到一个满足的包，就停止查找。</li>
 </ul>
-<h2 id="二、敏捷开发的一些感悟"><a href="#二、敏捷开发的一些感悟" class="headerlink" title="二、敏捷开发的一些感悟"></a>二、敏捷开发的一些感悟</h2><ul>
-<li>何为敏捷开发<ul>
-<li>《百度百科》上面有一个很好的解释，‘敏捷方法有时候被误认为是无计划性和纪律性的方法，<br>实际上更确切的说法是敏捷方法强调适应性而非预见性’，我非常同意这句话，各别公司对于敏捷的认识比较肤浅，<br>当然，我本人也理解的也是很一般；</li>
-<li>首先说适应性，也就是说，敏捷可以很快的调整计划，快速制定新的发布计划<br>  和发布方案，也就是从需求提出-&gt;产品确认-&gt;开发确认可行性，然后结合研发人员的时间评估，与项目经理的意见<br>  相结合，制定新的发布方案和发布计划，也就是说，拥有变化，能很好地适应各种需求的变更，也符合互联网<br>  周期短的特性，想一想，当你产品做到一半，发现原先的产品需要有需求的变更，如果利用敏捷开发，就能够<br>  快速的调整改变；</li>
-<li>其次是非预见性，也就是，一个项目的进展，毕竟存在很多未知的因素，虽然前期的准备<br>  工作，能够降低未知因素，但是，绝对不会说是完全消除；很简单，比如，有一次，我们做好了<br>  一次准备工作；发布计划、发布方案、详细技术设计、环境部署，全部很ok，但是最终，只是<br>  因为需求方的一个需求，线上的版本，可以动态切换环境，就由于这个简单的需求，需要<br>  我们重新设计，开发，测试，以及部署，这个过程绝对不会小于2个工作天，而且牵连也很大，<br>  而对于敏捷，我们这个敏捷团队，就针对这个变化，快速调整，快速制定，快速开发，快速上线，<br>  而不是和以往的流程，比较依赖固定的计划和文档，对于一些变更的内容，修改起来，牵扯的关系很复杂，<br>  很难刀刀这一目的。</li>
+<h3 id="命名导入"><a href="#命名导入" class="headerlink" title="命名导入"></a>命名导入</h3><pre><code>    当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；
+所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；
+    有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这个包
+</code></pre><p>==空白标识符==</p>
+<pre><code>    下划线字符（_）在Go语言里面称为空白标识符，有很多用法。这个标识符用来抛弃不想
+继续使用的值，如给导入的包赋予一个空名字，或者忽略函数返回的你不感兴趣的值;    
+</code></pre><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> notebook</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	myfmt <span class="string">"chat"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">packageExample</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"测试导入重命名"</span>)</div><div class="line">	myfmt.CreateServer()</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Go开发工具"><a href="#Go开发工具" class="headerlink" title="Go开发工具"></a>Go开发工具</h3><ul>
+<li><p>go vet</p>
+<pre><code>vet不是帮助开发人员写代码，而是检测代码的常见错误。可以检测以下错误：
+1、Printf类函数的方法时，方法签名的错误。
+2、定义常用的方法时，方法签名错误。
+3、错误的结构标签。
+4、没有指定字段名的结构字面量。
+</code></pre></li>
+<li>Go语言文档<ul>
+<li>命令行查看：<code>godoc tar(包名)</code></li>
+<li>浏览文档：<code>go doc -hhtp=:5050(端口号)</code>    </li>
 </ul>
 </li>
+<li><p>社区开放的依赖管理工具</p>
+<pre><code>godep、vender和gb
+</code></pre></li>
 </ul>
 
       
@@ -389,7 +412,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/项目管理/" rel="tag"># 项目管理</a>
+            <a href="/tags/代码/" rel="tag"># 代码</a>
           
         </div>
       
@@ -398,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/21/代码整洁之道读后感/" rel="next" title="读书笔记一">
-                <i class="fa fa-chevron-left"></i> 读书笔记一
+              <a href="/2017/03/13/代码块积累/" rel="next" title="有些代码块积累">
+                <i class="fa fa-chevron-left"></i> 有些代码块积累
               </a>
             
           </div>
@@ -407,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/25/优雅的处理错误/" rel="prev" title="优雅的处理错误">
-                优雅的处理错误 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -530,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、为什么读此书"><span class="nav-number">1.</span> <span class="nav-text">一、为什么读此书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、敏捷开发的一些感悟"><span class="nav-number">2.</span> <span class="nav-text">二、敏捷开发的一些感悟</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#打包和工具链"><span class="nav-number">1.</span> <span class="nav-text">打包和工具链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Go导包的顺序"><span class="nav-number">1.1.</span> <span class="nav-text">Go导包的顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名导入"><span class="nav-number">1.2.</span> <span class="nav-text">命名导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Go开发工具"><span class="nav-number">1.3.</span> <span class="nav-text">Go开发工具</span></a></li></ol></li></ol></div>
             
 
           </div>
