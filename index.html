@@ -353,7 +353,7 @@
 <h3 id="命名导入"><a href="#命名导入" class="headerlink" title="命名导入"></a>命名导入</h3><pre><code>    当导入一个不再代码中使用的包的时候，Go编译器会编译失败，并且输出一个错误；
 所以，Go语言开发者团队决定，与其让编译器告警，还不如直接编译失败；
     有时候，需要导入一个包，但是不需要引入这个包的标识符；可以使用_来导入这个包
-</code></pre><p>==空白标识符==</p>
+</code></pre><p><code>空白标识符</code></p>
 <pre><code>    下划线字符（_）在Go语言里面称为空白标识符，有很多用法。这个标识符用来抛弃不想
 继续使用的值，如给导入的包赋予一个空名字，或者忽略函数返回的你不感兴趣的值;    
 </code></pre><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> notebook</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	myfmt <span class="string">"chat"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">packageExample</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"测试导入重命名"</span>)</div><div class="line">	myfmt.CreateServer()</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -367,7 +367,7 @@
 </code></pre></li>
 <li>Go语言文档<ul>
 <li>命令行查看：<code>godoc tar(包名)</code></li>
-<li>浏览文档：<code>go doc -hhtp=:5050(端口号)</code>    </li>
+<li>浏览文档：<code>go doc -http=:5050(端口号)</code>    </li>
 </ul>
 </li>
 <li><p>社区开放的依赖管理工具</p>
@@ -438,7 +438,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/13/代码块积累/" itemprop="url">
-                  有些代码块积累
+                  代码块积累
                 </a>
               
             
