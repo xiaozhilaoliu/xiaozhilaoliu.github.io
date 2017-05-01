@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="代码,读书," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,70 +84,43 @@
 
 
 
-<meta name="description" content="单元测试的个人认识
-从解决问题角度出发
-如何解决重构过程中，关联性影响？
-如何在保证每次提交的push的代码，都是完整可运行的？
-如何快速的验证，某个函数、类以及功能是正确的？
-如何在不做相信设计的情况下，能够预先对代码的设计，形成一个基本架构？
+<meta name="description" content="一、SurfaceView的回调不执行
+说明
+自定义哥SurfaceView，在xml中配置，会出现，其通过holder添加的回调，不被执行；究其原因，是由于Surfaceview被系统认为没有做任何事情，所有不回被不回调。
 
 
-从带来的好处出发
+解决方案
 
-大大的减少bug。
-快速的定位bug
-对代码的设计有一定的规范，提高代码质量
-大大的提升开发效率
-
-
-对于开发者的挑战
-
-除了管">
+在surfaceview里面手动去添加一个子控件，以触发surfaceview做懒初始化。
+在surfaceview的构造函数里面加入这句话也可以解决：
+1g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单元测试的重要性">
-<meta property="og:url" content="http://yoursite.com/2016/12/04/单元测试的重要性/index.html">
+<meta property="og:title" content="面向对象六大原则">
+<meta property="og:url" content="http://yoursite.com/2017/05/01/Surfaceview使用中的一些坑/index.html">
 <meta property="og:site_name" content="小志">
-<meta property="og:description" content="单元测试的个人认识
-从解决问题角度出发
-如何解决重构过程中，关联性影响？
-如何在保证每次提交的push的代码，都是完整可运行的？
-如何快速的验证，某个函数、类以及功能是正确的？
-如何在不做相信设计的情况下，能够预先对代码的设计，形成一个基本架构？
+<meta property="og:description" content="一、SurfaceView的回调不执行
+说明
+自定义哥SurfaceView，在xml中配置，会出现，其通过holder添加的回调，不被执行；究其原因，是由于Surfaceview被系统认为没有做任何事情，所有不回被不回调。
 
 
-从带来的好处出发
+解决方案
 
-大大的减少bug。
-快速的定位bug
-对代码的设计有一定的规范，提高代码质量
-大大的提升开发效率
-
-
-对于开发者的挑战
-
-除了管">
-<meta property="og:updated_time" content="2016-12-04T15:35:36.000Z">
+在surfaceview里面手动去添加一个子控件，以触发surfaceview做懒初始化。
+在surfaceview的构造函数里面加入这句话也可以解决：
+1g">
+<meta property="og:updated_time" content="2017-05-01T15:30:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单元测试的重要性">
-<meta name="twitter:description" content="单元测试的个人认识
-从解决问题角度出发
-如何解决重构过程中，关联性影响？
-如何在保证每次提交的push的代码，都是完整可运行的？
-如何快速的验证，某个函数、类以及功能是正确的？
-如何在不做相信设计的情况下，能够预先对代码的设计，形成一个基本架构？
+<meta name="twitter:title" content="面向对象六大原则">
+<meta name="twitter:description" content="一、SurfaceView的回调不执行
+说明
+自定义哥SurfaceView，在xml中配置，会出现，其通过holder添加的回调，不被执行；究其原因，是由于Surfaceview被系统认为没有做任何事情，所有不回被不回调。
 
 
-从带来的好处出发
+解决方案
 
-大大的减少bug。
-快速的定位bug
-对代码的设计有一定的规范，提高代码质量
-大大的提升开发效率
-
-
-对于开发者的挑战
-
-除了管">
+在surfaceview里面手动去添加一个子控件，以触发surfaceview做懒初始化。
+在surfaceview的构造函数里面加入这句话也可以解决：
+1g">
 
 
 
@@ -175,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/04/单元测试的重要性/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/01/Surfaceview使用中的一些坑/"/>
 
 
 
 
 
-  <title> 单元测试的重要性 | 小志 </title>
+  <title> 面向对象六大原则 | 小志 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -302,7 +275,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/04/单元测试的重要性/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/Surfaceview使用中的一些坑/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="hezq">
@@ -326,7 +299,7 @@
             
             
               
-                单元测试的重要性
+                面向对象六大原则
               
             
           </h1>
@@ -339,8 +312,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-04T23:21:49+08:00">
-                2016-12-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-01T23:09:10+08:00">
+                2017-05-01
               </time>
             
 
@@ -393,33 +366,32 @@
       
 
       
-        <h2 id="单元测试的个人认识"><a href="#单元测试的个人认识" class="headerlink" title="单元测试的个人认识"></a>单元测试的个人认识</h2><ul>
-<li>从解决问题角度出发<ul>
-<li>如何解决重构过程中，关联性影响？</li>
-<li>如何在保证每次提交的push的代码，都是完整可运行的？</li>
-<li>如何快速的验证，某个函数、类以及功能是正确的？</li>
-<li>如何在不做相信设计的情况下，能够预先对代码的设计，形成一个基本架构？</li>
+        <h2 id="一、SurfaceView的回调不执行"><a href="#一、SurfaceView的回调不执行" class="headerlink" title="一、SurfaceView的回调不执行"></a>一、SurfaceView的回调不执行</h2><ul>
+<li>说明<ul>
+<li>自定义哥SurfaceView，在<code>xml</code>中配置，会出现，其通过holder添加的回调，不被执行；究其原因，是由于Surfaceview被系统认为没有做任何事情，所有不回被不回调。</li>
 </ul>
 </li>
-<li><p>从带来的好处出发</p>
+<li><p>解决方案</p>
 <ul>
-<li>大大的减少bug。</li>
-<li>快速的定位bug</li>
-<li>对代码的设计有一定的规范，提高代码质量</li>
-<li>大大的提升开发效率</li>
-</ul>
-</li>
-<li><p>对于开发者的挑战</p>
+<li>在surfaceview里面手动去添加一个子控件，以触发surfaceview做懒初始化。</li>
+<li><p>在surfaceview的构造函数里面加入这句话也可以解决：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getHolder().addCallback(<span class="keyword">this</span>);</div></pre></td></tr></table></figure>
 <ul>
-<li>除了管理程序代码，还的维护测试代码</li>
-<li>没有一定的时间的实践，对数会认为这个过程太复杂，直接放弃。</li>
-<li>要求写出能够测试的代码，对代码质量有了更高的要求。</li>
+<li>不要在xml中配置，在代码中手动添加surfaceview，也可以解决这个问题</li>
 </ul>
 </li>
-<li>如何更好的实践<ul>
-<li>单元测试自动化</li>
-<li>单元测试效率提升</li>
-<li>频繁的运行单元测试</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、闪屏问题解决方案"><a href="#二、闪屏问题解决方案" class="headerlink" title="二、闪屏问题解决方案"></a>二、闪屏问题解决方案</h2><ul>
+<li>原因<ul>
+<li>Surfaceview采用双缓存，机制是，front和back两个缓存，交替进行显示，这样，就会导致界面交替出现；</li>
+</ul>
+</li>
+<li>解决方案<ul>
+<li>记住绘制的轨迹，每次绘制，都全部清屏，重新绘制一次。（推荐方案）</li>
+<li>每次都往一个面板绘制，这样，就能保证数据不是交替出现（亲自测试，这样也是有问题，会显现空白页面，体验不好） </li>
+<li>ps：无论是view的ondraw函数中，无法保留上次绘制的内容，所以，所有的绘制记录，必须要保存下来，下次canvas绘制，需要全部重新绘制。</li>
 </ul>
 </li>
 </ul>
@@ -446,9 +418,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/代码/" rel="tag"># 代码</a>
-          
-            <a href="/tags/读书/" rel="tag"># 读书</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -457,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/16/代码重构读书笔记/" rel="next" title="重构代码读书笔记">
-                <i class="fa fa-chevron-left"></i> 重构代码读书笔记
+              <a href="/2017/03/18/Go学习笔记/" rel="next" title="Go学习笔记一">
+                <i class="fa fa-chevron-left"></i> Go学习笔记一
               </a>
             
           </div>
@@ -466,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/29/2016年度个人总结/" rel="prev" title="2016年度个人总结">
-                2016年度个人总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试的个人认识"><span class="nav-number">1.</span> <span class="nav-text">单元测试的个人认识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、SurfaceView的回调不执行"><span class="nav-number">1.</span> <span class="nav-text">一、SurfaceView的回调不执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、闪屏问题解决方案"><span class="nav-number">2.</span> <span class="nav-text">二、闪屏问题解决方案</span></a></li></ol></div>
             
 
           </div>
