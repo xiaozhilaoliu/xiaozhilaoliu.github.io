@@ -372,8 +372,7 @@
 <li><p>关于其他语言,比如kotlin（包括 C++，C#，JavaScript，Python……）都有异常机制，但它们不要求你在函数的类型里面声明可能出现的异常类型，也不使用静态类型系统对异常的处理进行检查和验证。</p>
 </li>
 </ul>
-<p>##Checked Exception分析</p>
-<h3 id="代码样式"><a href="#代码样式" class="headerlink" title="代码样式"></a>代码样式</h3><h4 id="CE的代码样式（java）"><a href="#CE的代码样式（java）" class="headerlink" title="CE的代码样式（java）"></a>CE的代码样式（java）</h4><ul>
+<h2 id="Checked-Exception分析"><a href="#Checked-Exception分析" class="headerlink" title="Checked Exception分析"></a>Checked Exception分析</h2><h3 id="代码样式"><a href="#代码样式" class="headerlink" title="代码样式"></a>代码样式</h3><h4 id="CE的代码样式（java）"><a href="#CE的代码样式（java）" class="headerlink" title="CE的代码样式（java）"></a>CE的代码样式（java）</h4><ul>
 <li>显示的声名了可能抛出的异常</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是HttpURLConnection打开连接的方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> URLConnection <span class="title">openConnection</span><span class="params">()</span> <span class="keyword">throws</span> java.io.IOException </span>&#123;</div><div class="line">     <span class="keyword">return</span> handler.openConnection(<span class="keyword">this</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
